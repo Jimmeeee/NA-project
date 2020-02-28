@@ -4,6 +4,10 @@
 \usepackage[utf8]{inputenc}
 \usepackage[finnish]{babel}
 \usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage[figurename=Fig.]{caption}
+\usepackage{subfig}
+
 
 \title{Network Analysis - Project Report}
 \author{
@@ -18,9 +22,8 @@
 \section{Introduction}
 This project is part of network analysis course. The purpose of this project was to analyse real-world network by applying different algorithms to extract some interesting information about the network as well as get hands-on experience with network analysis. We chose to analyse California road networks because TBD - why? 
 
-TBD-something else?
 
-In this report we will cover the technical aspects of gathering the data, tell how the work was divided, explain our network analysis and visualizations, and finally describe our conclusions. 
+In this report we will cover the technical aspects of gathering the data, tell how the work was divided, explain our network analysis and visualizations, and finally describe our conclusions. The project can be found in github (https://github.com/Jimmeeee/NA-project)
 
 
 
@@ -48,26 +51,67 @@ After analysing the general structure of the network, we moved to the second que
 
 For the third question ...
 
-
+\newpage
 
 \section{Results}
+\subsection{General structure analysis results}
+
+\subsubsection{Visualisation}
+We visualised the network using python library called networkx. In the following figure we can see the edge structure of California's road network on the left, and on the right we can see the same graph but with intensity of edge based on number of points of interest.
+\begin{figure}[h!]
+    \centering
+    \caption{California's road network}%
+    \subfloat[Edges on the network]{{\includegraphics[width=5.5cm]{road.png} }}%
+    \qquad
+    \subfloat[Points of interest edge intensity]{{\includegraphics[width=5.5cm]{merge.png} }}%
+\end{figure}
 
 
 
 
+\subsubsection{Degree distribution}
+In order to get more information about the basic structure of the network we checked the connectivity of the network and analysed degree distribution of the nodes. We found out that the California's roads are connected and there are no isolated sections. Also, from the figure below we can see the node degree distributions. It is intuitive that the majority of the nodes have degree of two as they are the middle nodes of the road. However, we can also see that there are lots of nodes that have degree higher than two, they are the intersections. Nodes that have degree of one are dead-ends.
 
+\begin{figure}[h]
+\caption{Degree distribution}
+\centering
+\includegraphics[scale=0.4]{degree.png}
+\end{figure}
+
+\subsubsection{Centrality}
+We analysed the structure of the network with different centrality measures. These were: degree centrality, betweenness centrality, eigenvector centrality and katz centrality. In the figure below we can see the different centrality measures where higher color intensity and bigger node size means higer centrality value.  
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.24]{centrality.png}
+\end{figure}
+
+
+\subsection{Communitites}
+For finding out the counties of California we used Girvan Newman community detection algorithm on networkx. Since the size of our network was inormous we had to optimize the algorithm with few methods. We based our edge removal to betweenness centrality as it sped up the algorithm noticeably. Also, we stopped the algorithm after it had found 58 communities as there are only 58 counties in California. In the figure below we can see how well we managed to find different counties based on the road network. 
+
+\begin{figure}[h!]
+\title{Girvan Newman community detection}
+\centering
+\includegraphics[scale=0.4]{community.png}
+\end{figure}
+
+\subsection{Machine Learning}
+
+
+\newpage
 \section{Conclusions}
-
-
-
-
-
-
-
-
+This does not need to be long
 
 
 \section{Contributors}
+
+\begin{enumerate}
+    \item Jimi Hytönen - Gathering data, building and visualising the network. Helping out with general structure and communities. Writing project report.
+	\item Hanna Holtdirk - TBD
+	\item Basil Mashal - TBD
+
+\end{enumerate}
 
 
 \end{document}
